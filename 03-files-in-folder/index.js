@@ -16,7 +16,7 @@ function displayFileInfo() {
         }
         if (file.isFile()) {
           const fileSizeInKB = (stats.size / 1024).toFixed(2);
-          console.log(`${file.name}-${fileSizeInKB}kb`);
+          console.log(`${file.name}-${path.extname(file.name).slice(1)}-${fileSizeInKB}kb`);
         }
       });
     });
