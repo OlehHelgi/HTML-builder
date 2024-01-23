@@ -13,18 +13,17 @@ const readConsole = readline.createInterface({
 
 readConsole.on('line', (line) => {
   if (line.trim() === 'exit') {
-    console.log("Good bye!");
+    console.log("Goodbye!");
     readConsole.close();
     writeStream.close();
     return;
   }
   writeStream.write(`${line}\n`);
  });
-process.on('SIGINT', sayGoodBye);
-function sayGoodBye() {
-  console.log('Good bye!');
-  readConsole.close();
-  writeStream.close();
-}
 
-readConsole.on('close', () => process.exit(0));
+process.on('exit', () => {
+  writeStream.close();
+  console.log('Goodbye!\n');
+});
+
+process.on('SIGINT', () => process.exit());
